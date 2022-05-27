@@ -51,3 +51,50 @@ class LinkedList:
 
     def __str__(self):
         return str([value for value in self])
+
+####-------------------------------------------------------------------------------
+####              QUEUE:
+####-------------------------------------------------------------------------------
+
+class Queue(LinkedList):
+    
+    def enqueue(self, data):
+        self.prepend(data)
+        
+    def get_front(self):
+        return self.tail.data
+    
+    # Add dequeue() method here
+    def dequeue(self):
+        ret = self.tail.data
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        else:
+            self.tail = self.tail.prev
+            self.tail.next = None
+        self.length -= 1
+        return ret
+        
+ ####-------------------------------------------------------------------------------
+####              STACK:
+####-------------------------------------------------------------------------------
+#    
+class Stack(LinkedList):
+    
+    def push(self, data):
+        self.append(data)
+
+    def peek(self):
+        return self.tail.data
+
+    # Add pop() method here
+    def pop(self):
+        ret = self.tail.data
+        if self.length == 1:
+            self.tail = self.head = None
+        else:
+            self.tail = self.tail.prev
+            self.tail.next = None
+        self.length -= 1
+        return ret 
