@@ -5,8 +5,7 @@ class Entry:
         self.key = key
         self.value = value
 
-class Dictionary:
-    
+class Dictionary:   
     def __init__(self, num_buckets):
         self.num_buckets = num_buckets
         self.buckets = [LinkedList() for _ in range(num_buckets)]
@@ -44,3 +43,10 @@ class Dictionary:
         if len(new_bucket) < len(self.buckets[index]):
             self.length -= 1
         self.buckets[index] = new_bucket
+
+    def __getitem__(self, key):
+        return self.get_value(key)
+    def __setitem__(self, key, value):
+        return self.put(key, value)
+    def __len__(self):
+        return self.length
