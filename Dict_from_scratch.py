@@ -1,3 +1,5 @@
+from LinkenListsStacksDict import LinkedList
+
 class Entry:
     def __init__(self, key, value):
         self.key = key
