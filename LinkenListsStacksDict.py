@@ -64,7 +64,6 @@ class Queue(LinkedList):
     def get_front(self):
         return self.tail.data
     
-    # Add dequeue() method here
     def dequeue(self):
         ret = self.tail.data
         if self.length == 1:
@@ -75,7 +74,7 @@ class Queue(LinkedList):
             self.tail.next = None
         self.length -= 1
         return ret
-        
+
  ####-------------------------------------------------------------------------------
 ####              STACK:
 ####-------------------------------------------------------------------------------
@@ -88,7 +87,6 @@ class Stack(LinkedList):
     def peek(self):
         return self.tail.data
 
-    # Add pop() method here
     def pop(self):
         ret = self.tail.data
         if self.length == 1:

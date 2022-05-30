@@ -50,3 +50,5 @@ class Dictionary:
         return self.put(key, value)
     def __len__(self):
         return self.length
+
+    
