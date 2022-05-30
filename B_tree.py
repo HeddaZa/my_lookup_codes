@@ -34,4 +34,45 @@ class Node:
         self.values.insert(insert_index, value)
         return insert_index
 
-    
+    def split_no_parent(self):
+        split_index = len(self)//2
+        key_to_move_up = self.keys[split_index]
+        value_to_move_up = self.values[split_index]
+        right_node = Node(
+            self.keys[split_index+1:], 
+            self.values[split_index+1:],
+            self.children[split_index+1:]
+        )
+        self.keys = self.keys[:split_index]
+        self.values = self.values[:split_index]
+        self.children = self.children[:split_index+1]
+        parent = Node([key_to_move_up],[value_to_move_up],[self, right_node])
+        return parent
+
+    def insert_child(self, insert_index, child):
+        self.children.insert(insert_index, child)
+        child.parent = self
+
+    def split_with_parent(self):
+        split_index = len(self) // 2
+        key_to_move_up = self.keys[split_index]
+        value_to_move_up = self.values[split_index]
+        right_node = Node(
+            self.keys[split_index+1:], 
+            self.values[split_index+1:],
+            self.children[split_index+1:]
+        )
+        self.keys = self.keys[:split_index]
+        self.values = self.values[:split_index]
+        self.children = self.children[:split_index+1]
+        insert_index = self.parent.insert_entry(
+            key_to_move_up, 
+            value_to_move_up
+        )
+        self.parent.insert_child(insert_index+1, right_node)
+        return self.parent
+
+    def split(self):
+        if self.parent is None:
+            return self.split_no_parent()
+        return self.split_with_parent()
